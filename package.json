@@ -1,0 +1,23 @@
+{
+  "name": "W08D01_MongoDB-Mongoose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BasemHmoud/W08D01_MongoDB-Mongoose.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BasemHmoud/W08D01_MongoDB-Mongoose/issues"
+  },
+  "homepage": "https://github.com/BasemHmoud/W08D01_MongoDB-Mongoose#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
