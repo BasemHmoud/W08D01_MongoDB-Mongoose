@@ -18,8 +18,21 @@ app.post("/create/todo", (req, res) => {
     isCompleted,
     priority,
   });
+  console.log("first" + todo);
   todo
     .save()
+    .then((result1) => {
+      res.json(result1);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+  console.log("second" + todo);
+});
+//return all todo
+app.get("/todo", (req, res) => {
+  todoModul
+    .find()
     .then((result) => {
       res.json(result);
     })
