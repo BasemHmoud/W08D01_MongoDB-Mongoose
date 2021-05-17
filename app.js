@@ -41,6 +41,17 @@ app.get("/todo", (req, res) => {
     });
 });
 
+//return all todo is completed
+app.get("/todo/completed", (req, res) => {
+  todoModul
+    .find({ isCompleted: true })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 app.listen(port, () => {
   console.log(`server run on port ${port}`);
 });
