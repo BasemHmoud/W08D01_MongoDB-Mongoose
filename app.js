@@ -7,11 +7,11 @@ app.use(express.json());
 
 const db = require("./db");
 
-const todoModul = require("./schema");
+const todoModule = require("./schema");
 
 app.post("/create/todo", (req, res) => {
   const { task, description, deadline, isCompleted, priority } = req.body;
-  const todo = new todoModul({
+  const todo = new todoModule({
     task,
     description,
     deadline,
@@ -31,7 +31,7 @@ app.post("/create/todo", (req, res) => {
 });
 //return all todo
 app.get("/todo", (req, res) => {
-  todoModul
+  todoModule
     .find()
     .then((result) => {
       res.json(result);
@@ -43,7 +43,7 @@ app.get("/todo", (req, res) => {
 
 //return all todo is completed
 app.get("/todo/completed", (req, res) => {
-  todoModul
+  todoModule
     .find({ isCompleted: true })
     .then((result) => {
       res.json(result);
@@ -53,10 +53,25 @@ app.get("/todo/completed", (req, res) => {
     });
 });
 
-//return all todo is completed
-app.put("/todo/update", (req, res) => {
-  todoModul
-    .updateOne({ isCompleted: true })
+//updating the todo list item.
+app.put("/todo/update/:task", (req, res) => {
+  const task1 = req.params.task;
+  const { task, description, deadline, isCompleted, priority } = req.body;
+  todoModule
+    .findOneAndUpdate({ task:task1 },{task, description, deadline, isCompleted, priority})
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+//deleting the todo list item.
+app.delete("/todo/delete/:task", (req, res) => {
+  const task1 = req.params.task;
+  todoModule
+    .findOneAndDelete({ task:task1 } )
     .then((result) => {
       res.json(result);
     })
